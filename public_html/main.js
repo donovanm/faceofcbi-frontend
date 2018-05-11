@@ -34,16 +34,33 @@ Vue.component('app', {
       this.selectedEmployees = [];
     },
     handleStart: function () {
-      const idList = this.selectedEmployees
-        .map(index => this.employees[index].id)
-        .join(',');
+      const idList = this.selectedEmployees.join(',');
 
       // Resulting image
-      get(`http://localhost:5000?ids=${idList}`).then(console.log);
+      get(`http://localhost:5000?ids=${idList}`).then((data) => {
+        const canvas = this.$refs.myCanvas;
+        const ctx = canvas.getContext('2d');
+        const imageData = new ImageData(250, 300);
+        let counter = 0;
+        for (var y = 0; y < 300; y++) {
+          for (var x = 0; x < 250; x++) {
+            const pixel = data[y][x];
+            imageData.data[counter] = pixel[0];
+            imageData.data[counter + 1] = pixel[1];
+            imageData.data[counter + 2] = pixel[2];
+            imageData.data[counter + 3] = 255;
+            counter+=4;
+          }
+        }
+        ctx.putImageData(imageData, 0, 0)
+      });
     }
   },
   template: `
     <div>
+      <div style="textAlign: center">
+        <canvas ref="myCanvas" width=250 height=300 />
+      </div>
       <div>
         <button @click="handleStart">Blend!</button>
         <button @click="handleClear">Clear Selections</button>
