@@ -1,0 +1,13 @@
+.employee {
+  /* border: 2px solid transparent; */
+  float: left;
+  filter: blur(2px) brightness(.5);
+  /* transition: filter 1000ms;
+  transform: translateX(0); */
+}
+.employee:hover, .employee.selected {
+  filter: none;
+}
+.employee.selected {
+  outline: 3px solid #0080007a;
+}
