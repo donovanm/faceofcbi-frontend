@@ -41,11 +41,6 @@ button {
   margin-right: 10px;
 }
 
-.departments img {
-  border-radius: 0 0 5px 5px;
-  display: block;
-}
-
 .action-bar {
   background-color: #eee;
   font-size: 17px;

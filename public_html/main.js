@@ -13,14 +13,24 @@ Vue.component('app', {
       id: result.id,
       photoUrl: result.photoUrl,
       selected: false,
+      name: result.displayName,
     })));
   },
   data: function () {
     return {
       employees: [],
-      filterText: '',
+      filterValue: '',
       selectedEmployees: [],
     };
+  },
+  computed: {
+    filteredEmployees: function () {
+      if (!this.filterValue) {
+        return this.employees;
+      }
+      return this.employees
+        .filter(employee => employee.name.toLowerCase().includes(this.filterValue.toLowerCase()));
+    }
   },
   methods: {
     handleToggle: function (id) {
@@ -32,6 +42,7 @@ Vue.component('app', {
     },
     handleClear: function () {
       this.selectedEmployees = [];
+      // this.filterText = ''; Doesn't update the filtered employees for some reason. No time to fix
     },
     handleStart: function () {
       const idList = this.selectedEmployees.join(',');
@@ -54,7 +65,10 @@ Vue.component('app', {
         }
         ctx.putImageData(imageData, 0, 0)
       });
-    }
+    },
+    handleFilterChange: function (event) {
+      this.filterValue = event.target.value;
+    },
   },
   template: `
     <div>
@@ -63,13 +77,13 @@ Vue.component('app', {
       </div>
       <div class="action-bar">
         <button @click="handleStart">BLEND!</button>
-        <button @click="handleClear">CLEAR SELECTIONS</button>
+        <button @click="handleClear">CLEAR</button>
         <div style="float: right">
-          Filter <input type="text" v-model="filterText" />
+          Filter <input type="text" v-model="filterText" @keyup="handleFilterChange" />
         </div>
       </div>
       <employee
-        v-for="(employee, index) in employees"
+        v-for="(employee, index) in filteredEmployees"
         :key="employee.id"
         :onToggle="handleToggle.bind(null, employee.id)"
         :pictureUrl="employee.photoUrl"
