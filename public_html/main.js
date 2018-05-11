@@ -45,9 +45,9 @@ Vue.component('app', {
         for (var y = 0; y < 300; y++) {
           for (var x = 0; x < 250; x++) {
             const pixel = data[y][x];
-            imageData.data[counter] = pixel[0];
-            imageData.data[counter + 1] = pixel[1];
-            imageData.data[counter + 2] = pixel[2];
+            imageData.data[counter] = pixel[0] ? pixel[0] : 255;
+            imageData.data[counter + 1] = pixel[1] ? pixel[1] : 255;
+            imageData.data[counter + 2] = pixel[2] ? pixel[2] : 255;
             imageData.data[counter + 3] = 255;
             counter+=4;
           }
