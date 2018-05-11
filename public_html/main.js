@@ -79,7 +79,7 @@ Vue.component('app', {
         <button @click="handleStart">BLEND!</button>
         <button @click="handleClear">CLEAR</button>
         <div style="float: right">
-          Filter <input type="text" v-model="filterText" @keyup="handleFilterChange" />
+          Filter <input type="text" v-model="filterValue" @keyup="handleFilterChange" />
         </div>
       </div>
       <employee
