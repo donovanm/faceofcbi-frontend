@@ -9,9 +9,9 @@ const get = (url) => fetch(url, {
 
 Vue.component('app', {
   created: function () {
-    get('/api').then(results => this.employees = results.map(result => ({
+    get('/api').then(results => this.employees = results.employees.map(result => ({
       id: result.id,
-      photoUrl: result.photo_url,
+      photoUrl: result.photoUrl,
       selected: false,
     })));
   },
@@ -39,7 +39,7 @@ Vue.component('app', {
         .join(',');
 
       // Resulting image
-      get(`localhost:5000?ids=${idList}`).then(console.log);
+      get(`http://localhost:5000?ids=${idList}`).then(console.log);
     }
   },
   template: `
