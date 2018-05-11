@@ -62,8 +62,8 @@ Vue.component('app', {
         <canvas ref="myCanvas" width=250 height=300 />
       </div>
       <div class="action-bar">
-        <button @click="handleStart">Blend!</button>
-        <button @click="handleClear">Clear Selections</button>
+        <button @click="handleStart">BLEND!</button>
+        <button @click="handleClear">CLEAR SELECTIONS</button>
         <div style="float: right">
           Filter <input type="text" v-model="filterText" />
         </div>

@@ -45,6 +45,11 @@ h1 img {
   max-width: 250px;
 }
 
+.departments img {
+  border-radius: 0 0 5px 5px;
+  display: block;
+}
+
 .cbi-average {
   margin: 0 auto;
   text-align: center;
