@@ -34,11 +34,12 @@ Vue.component('app', {
       this.selectedEmployees = [];
     },
     handleStart: function () {
-      const ids = this.selectedEmployees
+      const idList = this.selectedEmployees
         .map(index => this.employees[index].id)
-        .join(', ');
+        .join(',');
 
-      alert(ids);
+      // Resulting image
+      get(`localhost:5000?ids=${idList}`).then(console.log);
     }
   },
   template: `
