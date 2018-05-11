@@ -8,5 +8,5 @@ module.exports = getEmployees = (req, res) => fetch(url, {
   },
 })
 .then(response => response.text())
-.then(results => res.send(results.employees))
+.then(results => res.send(results))
 .catch(error => console.error('Error retrieving employees', error));

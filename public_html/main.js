@@ -61,11 +61,11 @@ Vue.component('app', {
       <div style="textAlign: center">
         <canvas ref="myCanvas" width=250 height=300 />
       </div>
-      <div>
+      <div class="action-bar">
         <button @click="handleStart">Blend!</button>
         <button @click="handleClear">Clear Selections</button>
         <div style="float: right">
-          <input type="text" v-model="filterText" />
+          Filter <input type="text" v-model="filterText" />
         </div>
       </div>
       <employee
